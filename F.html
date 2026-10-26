@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="fa" dir="rtl"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffe8f3">
+<title>برای پرنسس من 💗</title>
+<style>
+  :root { --pink:#f7a8ce; --deep:#bd4d86; --ink:#75405d; --paper:#fffafc; }
+  * { box-sizing:border-box; }
+  body {
+    margin:0; min-height:100vh; overflow-x:hidden; color:var(--ink);
+    font-family:Tahoma, Arial, sans-serif;
+    background:radial-gradient(circle at 20% 10%,#fff 0,transparent 28%),
+      linear-gradient(145deg,#fff0f7,#ffe0ef 55%,#fcecff);
+    display:flex; align-items:center; justify-content:center; padding:22px 14px;
+  }
+  .sparkle {
+    position:fixed; z-index:0; pointer-events:none; color:#e58bb8;
+    animation:floatUp linear infinite; opacity:.7;
+  }
+  @keyframes floatUp { from { transform:translateY(110vh) rotate(0deg); } to { transform:translateY(-15vh) rotate(35deg); } }
+  .wrap { width:min(100%,440px); position:relative; z-index:1; text-align:center; }
+  .tag { font-size:12px; letter-spacing:.4px; color:#b75b8b; margin-bottom:9px; }
+  h1 { color:var(--deep); font-size:clamp(25px,7vw,34px); margin:0 0 9px; text-shadow:0 2px 0 #fff; }
+  .intro { font-size:14px; line-height:1.9; margin:0 auto 23px; max-width:330px; }
+  .envelope-area { perspective:1000px; margin:8px auto 22px; width:min(100%,340px); }
+  .envelope {
+    height:210px; position:relative; cursor:pointer; border:0; background:transparent;
+    width:100%; display:block; padding:0; filter:drop-shadow(0 13px 15px #d77ca733);
+    -webkit-tap-highlight-color:transparent;
+  }
+  .env-back { position:absolute; inset:18px 8px 0; border-radius:12px; background:#f6a8cd; }
+  .letter-peek {
+    position:absolute; left:20px; right:20px; top:25px; height:150px; border-radius:8px;
+    background:#fffafc; padding:17px 10px; color:#c45c91; font-size:14px;
+    transition:transform .8s ease; box-shadow:0 2px 8px #c45c9120;
+  }
+  .env-front {
+    position:absolute; inset:62px 8px 0; border-radius:0 0 12px 12px;
+    background:linear-gradient(145deg,#f9b7d7,#ef8fbd); overflow:hidden;
+  }
+  .env-front:before,.env-front:after { content:""; position:absolute; top:0; width:0;height:0;border-style:solid; }
+  .env-front:before { left:0;border-width:0 0 130px 165px;border-color:transparent transparent #f5a5cd transparent; }
+  .env-front:after { right:0;border-width:130px 0 0 165px;border-color:transparent transparent transparent #f9c0dc; }
+  .flap {
+    position:absolute; top:18px; left:8px; right:8px; height:105px; z-index:3;
+    background:#f7b0d2; clip-path:polygon(0 0,100% 0,50% 100%);
+    transform-origin:top; transition:transform .8s ease, z-index .1s .3s;
+    border-radius:7px 7px 0 0;
+  }
+  .seal {
+    position:absolute; z-index:4; left:50%; top:91px; transform:translateX(-50%);
+    width:48px;height:48px;border-radius:50%; display:grid;place-items:center;
+    background:radial-gradient(circle at 30% 25%,#fff1f8,#e96ba8 70%);
+    border:2px solid #ffe8f3; box-shadow:0 3px 8px #b94a8038; color:white;font-size:23px;
+    transition:opacity .25s, transform .5s;
+  }
+  .env-label { position:absolute; z-index:5; bottom:15px; left:0; right:0; color:#fff; font-size:12px; text-shadow:0 1px 3px #b94a80; }
+  .envelope.open .flap { transform:rotateX(180deg); z-index:1; }
+  .envelope.open .seal { opacity:0; transform:translateX(-50%) scale(.5); }
+  .envelope.open .letter-peek { transform:translateY(-65px); }
+  .hint { font-size:12px; color:#b75b8b; margin-top:5px; }
+  .letter-card {
+    display:none; text-align:right; background:rgba(255,250,252,.94); border:1px solid #ffd2e7;
+    border-radius:20px; padding:22px 19px; box-shadow:0 12px 35px #cc6b9b1c;
+    animation:appear .7s ease both;
+  }
+  .letter-card.show { display:block; }
+  @keyframes appear { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+  .letter-card h2 { text-align:center; color:var(--deep); font-size:22px; margin:0 0 15px; }
+  .letter-card p { font-size:14px; line-height:2.15; margin:0 0 12px; }
+  .sign { text-align:left!important; color:#bc4e87; margin-top:18px!important; }
+  .btn {
+    border:0; border-radius:999px; padding:13px 18px; width:100%; margin-top:10px;
+    background:linear-gradient(100deg,#ed83b7,#d95a9b); color:white; font:inherit;
+    font-size:14px; font-weight:bold; box-shadow:0 6px 15px #d95a9b38; cursor:pointer;
+  }
+  .btn.secondary { background:#fff; color:#bd4d86; border:1px solid #f4bdd8; box-shadow:none; }
+  .secret { display:none; background:#fff0f7; border:1px dashed #e99bc2; border-radius:15px; padding:16px; margin-top:13px; text-align:center; }
+  .secret.show { display:block; animation:appear .5s ease both; }
+  .secret p { text-align:center; margin:0; }
+  .footer { font-size:11px; color:#b87b9b; margin-top:17px; }
+
+  .edit-toggle { position:relative; z-index:2; width:100%; max-width:440px; margin:0 auto 14px; }
+  .editor { display:none; text-align:right; background:#fff; border:1px solid #f4bdd8; border-radius:18px; padding:16px; margin:0 0 18px; box-shadow:0 8px 25px #cc6b9b18; }
+  .editor.show { display:block; }
+  .editor label { display:block; font-size:12px; color:#9b416d; margin:10px 0 5px; }
+  .editor input,.editor textarea { display:block; width:100%; border:1px solid #f1c3d9; border-radius:10px; padding:10px; font:inherit; font-size:13px; color:#75405d; background:#fffafd; }
+  .editor textarea { min-height:82px; resize:vertical; line-height:1.8; }
+  .editor .note { font-size:11px; line-height:1.8; color:#9b6b83; margin:4px 0 10px; }
+
+  @media (prefers-reduced-motion: reduce) { *,*:before,*:after { animation-duration:.01ms!important; transition-duration:.01ms!important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  
+  
+  <div class="tag">✧ یه سورپرایز کوچولو، فقط برای تو ✧</div>
+  <h1 id="pageTitle">برای پرنسس من 💗</h1>
+  <p class="intro" id="pageIntro">یه چیز کوچولو ساختم که هر وقت دلت خواست بازش کنی و یادت بیاد یه نفر از دور به قشنگی بودنت فکر می‌کنه</p>
+
+  <div class="envelope-area">
+    <button class="envelope" id="envelope" aria-label="باز کردن نامه">
+      <div class="env-back"></div>
+      <div class="letter-peek"><span id="peekText">برای بهترین وقشنگ ترین‌اتفاق زندگیم ♡</span><br><small>یه نامه از طرف من...</small></div>
+      <div class="env-front"></div>
+      <div class="flap"></div>
+      <div class="seal">♥</div>
+      <div class="env-label">نامه‌ات رو باز کن</div>
+    </button>
+    <div class="hint" id="hint">روی پاکت بزن تا باز بشه ✨</div>
+  </div>
+
+  <section class="letter-card" id="letter">
+    <h2 id="letterHeading">سلام به دختری که قلبم همیشه به خاطر عشقش میتپه🌷</h2>
+    <div id="letterBody"><p>شاید فعلا نتونم این حرفا رو رو‌به‌رو بهت بگم یا وقتی دلت خواست کنارت باشم ولی دلم خواست یه گوشه‌ی کوچولو از دنیای مجازیمون رو مخصوص خودت درست کنم</p><p>عشقم میخوام بهت بگم که خیلی خیلی دوست دارم و عاشقتم و خیلی ممنونم ازت که برام فردی امن هستی و با وجود اینکه خانوادت و مامانت ازت ناراحت میشن  بیشتر اوقات پیش من بودن رو ترجیح میدی و میخوام بدونی که بودنت و حرف زدنت یا سکوت کردنت و یا وقت هایی که باهم میگذرونیم برام خیلی ارزش داره و خیلی خیلی قدردانت هستم عشق خوشگلم<br>امیدوارم وقتی این نامه رو می‌خونی حتی برای چند لحظه لبخند بیاد روی لبت و یادت بیفته یه نفر هست که از ته دل خوشحاله تو رو توی زندگیش داره💗</p></div>
+    <p class="sign" id="letterSign">با کلی عشق،<br>پسری که این نامه رو مخصوص تو ساخته ♡</p>
+    <button class="btn" id="secretBtn">یه پیام مخفی هم هست... 🎀</button>
+    <div class="secret" id="secret">
+      <p id="secretText">✨ راز کوچولوی من ✨<br><br>عشقم اگه قرار باشه دوباره از اول باهات آشنا بشم باز هم دوست دارم که شب تا صبح بیدار بمونم و باهات اشنا بشم و بازم کلی بهت حس خوب بدم و اکلیلی بشم وبشی یا باهم دوباره پلی لیست و لیست ارزو های دونفره بسازیم یا بازم حس و حال و خوشحالی روز قبولیت تو ازمون رانندگی رو داشته باشیم  کم‌کم تو رو بشناسم باهات بخندم و در اخر می خوام بگم خیلی خیلی دوستت دار م و عاشقتم پرنسس خوشگلم و خیلی ممنون که تا اینجا این همه حس خوب و عشقت بهم دادی و من رو دیوونه خودت کردی</p>
+    </div>
+    <button class="btn secondary" id="heartBtn">بفرست یه عالمه قلب براش 💕</button>
+  </section>
+  <div class="footer">با عشق، از دنیای کوچیک من به دنیای تو ✨</div>
+</div>
+
+<script>
+  const envelope = document.getElementById('envelope');
+  const letter = document.getElementById('letter');
+  const hint = document.getElementById('hint');
+  envelope.addEventListener('click', () => {
+    envelope.classList.add('open');
+    hint.textContent = 'نامه‌ات باز شد 💗';
+    setTimeout(() => {
+      letter.classList.add('show');
+      letter.scrollIntoView({behavior:'smooth', block:'start'});
+    }, 550);
+  });
+  document.getElementById('secretBtn').addEventListener('click', () => {
+    const secret = document.getElementById('secret');
+    secret.classList.toggle('show');
+    document.getElementById('secretBtn').textContent = secret.classList.contains('show') ? 'پیام مخفی رو ببند 💌' : 'یه پیام مخفی هم هست... 🎀';
+  });
+  function floatHeart(symbol='♥') {
+    const el = document.createElement('div');
+    el.className = 'sparkle';
+    el.textContent = symbol;
+    el.style.left = (Math.random()*92+2)+'vw';
+    el.style.fontSize = (15+Math.random()*22)+'px';
+    el.style.animationDuration = (5+Math.random()*5)+'s';
+    el.style.opacity = .45+Math.random()*.45;
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(), 10500);
+  }
+  for(let i=0;i<18;i++) setTimeout(()=>floatHeart(i%3===0?'✦':'♥'), i*260);
+  setInterval(()=>floatHeart(Math.random()>.25?'♥':'✧'), 900);
+  document.getElementById('heartBtn').addEventListener('click', () => {
+    for(let i=0;i<18;i++) setTimeout(()=>floatHeart(i%3===0?'💗':'♥'), i*80);
+  });
+</script>
+
+<div class="sparkle" style="left: 4.48751vw; font-size: 34.701px; animation-duration: 8.33894s; opacity: 0.691029;">✧</div><div class="sparkle" style="left: 81.2521vw; font-size: 28.7872px; animation-duration: 6.96756s; opacity: 0.809337;">✧</div><div class="sparkle" style="left: 63.1098vw; font-size: 36.9126px; animation-duration: 8.73321s; opacity: 0.568696;">♥</div><div class="sparkle" style="left: 24.3199vw; font-size: 19.2145px; animation-duration: 5.82599s; opacity: 0.490014;">♥</div><div class="sparkle" style="left: 93.0856vw; font-size: 35.7148px; animation-duration: 8.07641s; opacity: 0.832696;">♥</div><div class="sparkle" style="left: 27.2349vw; font-size: 18.335px; animation-duration: 7.35711s; opacity: 0.739303;">♥</div><div class="sparkle" style="left: 3.27845vw; font-size: 24.6318px; animation-duration: 5.92496s; opacity: 0.483258;">♥</div></body></html>
